@@ -148,12 +148,12 @@ dynamics = {
     \barNumberCheck 9
     s2.\p |
     s2. |
-    s2.\mf |
+    \tag layout { s2.\mf } \tag midi { s2\mf s4\mp } |
     s2\> s4\! |
     s2.\p |
     s2. |
-    s2.\mf |
-    s2. |
+    \tag layout { s2.\mf } \tag midi { s4\mf s2\mp } |
+    \tag layout { s2. } \tag midi { s2.\mf } |
     
     \barNumberCheck 17
     s2. |
@@ -167,7 +167,28 @@ dynamics = {
 }
 
 tempi = {
-  \tempo "Moderato" 4 = 126
+  \repeat volta 2 {
+    \tempo "Moderato" 4 = 126
+    s2. * 8 |
+  }
+  \repeat volta 2 {
+    \barNumberCheck 9
+    s2. * 8 |
+    
+    \barNumberCheck 17
+    s2. * 6 |
+    \tag layout { s2. * 2 }
+    \tag midi {
+      \alternative {
+        { s2. * 2 }
+        {
+          s4 \tempo 4 = 116 s \tempo 4 = 100 s |
+          \tempo 4 = 88
+          s2. |
+        }
+      }
+    }
+  }
 }
 
 forceBreaks = {
